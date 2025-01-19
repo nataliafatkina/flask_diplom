@@ -1,0 +1,13 @@
+{% extends "menu.html" %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Мой профиль{% endblock %}</title>
+</head>
+<body>
+    {% block content %}
+    <h2 style="margin-bottom: 50px; margin-top: 50px;">Профиль</h2>
+    <p><b>Email пользователя:</b> {{ current_user.email }}</p>
+    {% endblock %}
+</body>
+</html>

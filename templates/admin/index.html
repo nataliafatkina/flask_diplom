@@ -1,0 +1,19 @@
+{% extends 'admin/master.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Admin Panel{% endblock %}</title>
+</head>
+<body>
+        {% block body %}
+            <h2 style="margin-bottom: 50px; margin-top: 50px;">
+                Добро пожаловать в панель администратора
+            </h2>
+            <p>
+                <a href="{{ url_for('home') }}">
+                    На домашнюю страницу
+                </a>
+            </p>
+        {% endblock %}
+</body>
+</html>

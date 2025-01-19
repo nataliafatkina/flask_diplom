@@ -1,0 +1,61 @@
+{% extends "menu.html" %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Регистрация{% endblock %}</title>
+</head>
+<body>
+    {% block content %}
+    <h2 style="margin-bottom: 50px; margin-top: 50px;">Регистрация</h2>
+    <form method="POST">
+        {{ register_user_form.hidden_tag() }}
+    {% from "security/_macros.html" import render_form_errors %}
+
+        {{ render_form_errors(register_user_form) }}
+
+         <div>
+         <label for="email">Введите email:</label>
+         {{ register_user_form.email(class="form-control",
+                                  style="width: 50%; max-width: 300px;") }}
+
+             {% if register_user_form.email.errors %}
+            <div class="text-danger">
+                {{ register_user_form.email.errors[0] }}
+            </div>
+        {% endif %}
+        </div>
+        <div>
+            <label for="password">Придумайте пароль:</label>
+            {{ register_user_form.password(class="form-control",
+                                        style="width: 50%; max-width: 300px;") }}
+
+            {% if register_user_form.password.errors %}
+            <div class="text-danger">
+                {{ register_user_form.password.errors[0] }}
+            </div>
+        {% endif %}
+        </div>
+        <div>
+            <label for="password_confirm">Повторите пароль:</label>
+            {{ register_user_form.password_confirm(class="form-control",
+                                        style="width: 50%; max-width: 300px;") }}
+
+            {% if register_user_form.password_confirm.errors %}
+            <div class="text-danger">
+                {{ register_user_form.password_confirm.errors[0] }}
+            </div>
+        {% endif %}
+        </div>
+
+        <button type="submit" style="background-color: #027bff; color: white;
+                                    border: 0px; border-radius: 5px; margin-top: 20px;">Зарегистрироваться</button>
+    </form>
+    <p></p>
+    <p></p>
+    <p style='font-size:11px;'>
+        Уже зарегистрированы? Войдите в свой аккаунт:
+        <a href="{{ url_for('security.login') }}" style='font-size:11px;'>Войти</a>
+    </p>
+    {% endblock %}
+</body>
+</html>
