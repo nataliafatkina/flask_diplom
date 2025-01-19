@@ -1,0 +1,52 @@
+{% extends "menu.html" %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Мои курсы{% endblock %}</title>
+</head>
+<body>
+    {% block content %}
+        <h2 style="margin-bottom: 50px; margin-top: 50px;">Мои курсы</h2>
+        <style>
+                table {
+                       width: 100%;
+                       border-collapse: collapse;
+                   }
+                   th, td {
+                       border-bottom: 1px solid #ddd;
+                       padding: 8px;
+                       text-align: left;
+                   }
+                   th {
+                       background-color: white;
+                       font-weight: bold;
+                   }
+                   tr:nth-child(even) {
+                       background-color: white;
+                   }
+                   tr:hover {
+                       background-color: white;
+                   }
+            </style>
+            <body>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Курс</th>
+                            <th>Категория</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                <tbody>
+                    <tr>
+                        <td><b>Курс 1</b></td>
+                        <td>Общая</td>
+                        <td><button style="background-color: #027bff; color: white;
+                                    border: 0px; border-radius: 5px;">Открыть</button></td>
+                    </tr>
+                </tbody>
+                </table>
+            </body>
+    {% endblock %}
+</body>
+</html>

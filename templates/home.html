@@ -1,0 +1,21 @@
+{% extends "menu.html" %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}О нас{% endblock %}</title>
+</head>
+<body>
+    {% block content %}
+    <h1 style="margin-bottom: 70px; margin-top: 50px;"> Добро пожаловать на КУРСАТОР!</h1>
+    <p style="margin-bottom: 20px;">
+        Здесь вы найдете уникальные обучающие курсы, которые можно пройти совершенно бесплатно.
+        Мы предлагаем широкий выбор материалов по различным направлениям, от личностного роста до профессиональных навыков.
+        Каждый курс разработан с учетом современных стандартов и предоставляет практические знания, которые можно применить сразу.
+        Начните обучение прямо сейчас и откройте для себя новые возможности для роста и развития!
+    </p>
+    <button onclick="location.href='{{ url_for('security.register') }}'"
+                                    style="background-color: #027bff; color: white;
+                                    border: 0px; border-radius: 5px;"> К курсам</button>
+    {% endblock %}
+</body>
+</html>

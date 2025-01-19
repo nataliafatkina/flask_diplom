@@ -1,0 +1,57 @@
+{% extends "courses/menu.html" %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Все курсы</title>
+</head>
+<body>
+    {% block content %}
+        <h2 style="margin-bottom: 50px; margin-top: 50px;">Все курсы</h2>
+            <style>
+                table {
+                       width: 100%;
+                       border-collapse: collapse;
+                   }
+                   th, td {
+                       border-bottom: 1px solid #ddd;
+                       padding: 8px;
+                       text-align: left;
+                   }
+                   th {
+                       background-color: white;
+                       font-weight: bold;
+                   }
+                   tr:nth-child(even) {
+                       background-color: white;
+                   }
+                   tr:hover {
+                       background-color: white;
+                   }
+            </style>
+            <body>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Курс</th>
+                            <th>Категория</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                <tbody>
+                {% for course in courses %}
+                    <tr>
+                        <td><b><a href="{% url 'about_course' course_id=course.id %}">{{ course.title }}</a></b>
+                            <br> {{ course.short_description }} </td>
+                        <td>{{ course.category }}</td>
+                        <td><button onclick="location.href='{% url 'start_course' course_id=course.id %}'"
+                                    style="background-color: #027bff; color: white;
+                                    border: 0px; border-radius: 5px;">Начать</button></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+            </body>
+    {% endblock %}
+</body>
+</html>

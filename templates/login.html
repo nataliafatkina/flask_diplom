@@ -1,0 +1,49 @@
+{% extends "menu.html" %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Вход{% endblock %}</title>
+</head>
+<body>
+    {% block content %}
+    <h2 style="margin-bottom: 50px; margin-top: 50px;">Вход</h2>
+    <form method="post">
+        {% from "security/_macros.html" import render_form_errors %}
+
+        {{ login_user_form.hidden_tag() }}
+        {{ render_form_errors(login_user_form) }}
+
+         <div>
+         <label for="email">Ваш email:</label>
+         {{ login_user_form.email(class="form-control",
+                                  style="width: 50%; max-width: 300px;") }}
+
+             {% if login_user_form.email.errors %}
+            <div class="text-danger">
+                {{ login_user_form.email.errors[0] }}
+            </div>
+        {% endif %}
+        </div>
+        <div>
+            <label for="password">Ваш пароль:</label>
+            {{ login_user_form.password(class="form-control",
+                                        style="width: 50%; max-width: 300px;") }}
+
+            {% if login_user_form.password.errors %}
+            <div class="text-danger">
+                {{ login_user_form.password.errors[0] }}
+            </div>
+        {% endif %}
+        </div>
+
+        <button type="submit" style="background-color: #027bff; color: white;
+                                    border: 0px; border-radius: 5px; margin-top: 20px;">Войти</button>
+    </form>
+    <p></p>
+    <p style='font-size:11px;'>
+        Еще нет аккаунта у нас? Зарегистрируйтесь:
+        <a href="{{ url_for('security.register') }}" style='font-size:11px;'>Регистрация</a>
+    </p>
+    {% endblock %}
+</body>
+</html>

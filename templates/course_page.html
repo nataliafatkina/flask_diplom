@@ -1,0 +1,14 @@
+{% extends "courses/menu.html" %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Kурс "{{ course.title }}"</title>
+</head>
+<body>
+    <h2 style="margin-bottom: 50px; margin-top: 50px;">Содержание курса</h2>
+    {% if course.content }
+        <p>{{ course.content }}</p>
+    {% else %}
+        <p>Курс еще в разработке.</p>
+</body>
+</html>
