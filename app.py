@@ -1,12 +1,12 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_security import Security, SQLAlchemyUserDatastore, login_required, UserMixin, RoleMixin
-from flask_babel import Babel
 from datetime import datetime
 from flask_migrate import Migrate
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from flask_login import current_user
+from flask_babel import Babel
 import uuid
 
 app = Flask(__name__)
@@ -36,6 +36,7 @@ roles_users = db.Table('roles_users',
                        db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
                        db.Column('role_id', db.Integer, db.ForeignKey('role.id'))
                        )
+
 
 courses_users = db.Table('courses_users',
                          db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
@@ -93,6 +94,7 @@ user_datastore = SQLAlchemyUserDatastore(db, User, Role)
 security = Security(app, user_datastore)
 
 
+
 admin = Admin(app)
 
 class UserAdmin(ModelView):
@@ -118,6 +120,7 @@ def admin():
     if any(role.name == 'админ' for role in current_user.roles):
         return render_template('admin/index.html')
     return render_template('no_access.html')
+
 
 @app.route('/home', endpoint='home')
 def home():
@@ -149,7 +152,7 @@ def profile():
     return render_template('profile.html')
 
 
-@app.route(f'/my_courses', endpoint='user_courses')
+@app.route('/my_courses', endpoint='user_courses')
 @login_required
 def user_courses():
     courses = current_user.courses
@@ -189,8 +192,3 @@ def start_course(course_id):
         return redirect(url_for('course_page', course_id=course.id))
 
     return render_template('course_page.html', course=course)
-
-
-@app.route('/test')
-def test():
-    return "Приложение работает!"
